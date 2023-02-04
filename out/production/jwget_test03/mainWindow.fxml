@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="700.0" maxWidth="905.0" minHeight="700.0" minWidth="905.0" prefHeight="700.0" prefWidth="905.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AppControler">
+   <children>
+      <MenuBar VBox.vgrow="ALWAYS">
+        <menus>
+          <Menu mnemonicParsing="false" text="App">
+            <items>
+              <MenuItem fx:id="mnuExit" mnemonicParsing="false" onAction="#onExit" text="Exit" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Jobs">
+            <items>
+              <MenuItem fx:id="mnuRun" mnemonicParsing="false" onAction="#onRun" text="Run" />
+                  <MenuItem fx:id="mnuStop" mnemonicParsing="false" onAction="#onStop" text="Stop" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="mnuRunAll" mnemonicParsing="false" onAction="#onRunAll" text="Run All" />
+                  <MenuItem fx:id="mnuStopAll" mnemonicParsing="false" onAction="#onStopAll" text="Stop All" />
+                  <MenuItem fx:id="mnuRefresh" mnemonicParsing="false" onAction="#onRefresh" text="Refresh Job List" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="mnuClear" mnemonicParsing="false" onAction="#onClear" text="Clear Finished Jobs" />
+                  <MenuItem fx:id="mnuDelete" mnemonicParsing="false" onAction="#onDelete" text="Delete Job" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem fx:id="mnuAbout" mnemonicParsing="false" onAction="#onAbout" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <ToolBar prefHeight="40.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+        <items>
+          <Button fx:id="btnExit" mnemonicParsing="false" onAction="#onExit">
+               <graphic>
+                  <ImageView fitHeight="62.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/exit.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <tooltip>
+                  <Tooltip text="Exit" />
+               </tooltip>
+            </Button>
+            <Button fx:id="btnRun" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onRun">
+               <graphic>
+                  <ImageView fitHeight="62.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/run.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <tooltip>
+                  <Tooltip text="Run" />
+               </tooltip>
+            </Button>
+            <Button fx:id="btnStop" layoutX="78.0" layoutY="10.0" mnemonicParsing="false" onAction="#onStop">
+               <graphic>
+                  <ImageView fitHeight="62.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/stop.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <tooltip>
+                  <Tooltip text="Stop" />
+               </tooltip>
+            </Button>
+            <Button fx:id="btnRunAll" layoutX="146.0" layoutY="10.0" mnemonicParsing="false" onAction="#onRunAll">
+               <graphic>
+                  <ImageView fitHeight="62.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/run_all.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <tooltip>
+                  <Tooltip text="Run All" />
+               </tooltip>
+            </Button>
+            <Button fx:id="btnStopAll" layoutX="214.0" layoutY="10.0" mnemonicParsing="false" onAction="#onStopAll">
+               <graphic>
+                  <ImageView fitHeight="62.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/stop_all.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <tooltip>
+                  <Tooltip text="Stop All" />
+               </tooltip>
+            </Button>
+            <Button fx:id="btnRefresh" layoutX="282.0" layoutY="14.0" mnemonicParsing="false" onAction="#onRefresh">
+               <graphic>
+                  <ImageView fitHeight="62.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/refresh%20jobs.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <tooltip>
+                  <Tooltip text="Stop All" />
+               </tooltip>
+            </Button>
+            <Button fx:id="btnDelete" layoutX="282.0" layoutY="14.0" mnemonicParsing="false" onAction="#onDelete">
+               <graphic>
+                  <ImageView fitHeight="62.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/delete.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <tooltip>
+                  <Tooltip text="Delete Job" />
+               </tooltip>
+            </Button>
+            <Button fx:id="btnClear" layoutX="350.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClear">
+               <graphic>
+                  <ImageView fitHeight="62.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/clear.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <tooltip>
+                  <Tooltip text="Clear Finished Jobs" />
+               </tooltip>
+            </Button>
+            <Button fx:id="btnAbout" layoutX="282.0" layoutY="10.0" mnemonicParsing="false" onAction="#onAbout">
+               <graphic>
+                  <ImageView fitHeight="62.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/about.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <tooltip>
+                  <Tooltip text="About" />
+               </tooltip>
+            </Button>
+        </items>
+      </ToolBar>
+      <HBox prefHeight="309.0" prefWidth="880.0">
+         <children>
+            <ListView fx:id="lstJobs" onMouseClicked="#onJobListClicked" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <TextArea fx:id="txtArea" prefHeight="266.0" prefWidth="618.0" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      <TabPane prefHeight="450.0" prefWidth="880.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+        <tabs>
+          <Tab text="Job">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="13.0" layoutY="14.0" text="Job Name" />
+                        <TextField fx:id="txtJobName" layoutX="81.0" layoutY="10.0" prefHeight="25.0" prefWidth="181.0" />
+                        <Label layoutX="281.0" layoutY="14.0" text="URL" />
+                        <TextField fx:id="txtURL" layoutX="311.0" layoutY="10.0" prefHeight="26.0" prefWidth="564.0" />
+                        <Label layoutX="13.0" layoutY="50.0" text="[-i] input file" />
+                        <TextField fx:id="txtInputFile" layoutX="13.0" layoutY="74.0" />
+                        <Button fx:id="btnBrowseInputFile" layoutX="197.0" layoutY="74.0" mnemonicParsing="false" onAction="#onBrowseInputFile" text="Browse" />
+                        <Label layoutX="281.0" layoutY="49.0" text="[-P] Prefix [Local Downloads Folder]" />
+                        <TextField fx:id="txtPrefix" layoutX="281.0" layoutY="74.0" />
+                        <Button fx:id="btnBrowsePrefix" layoutX="465.0" layoutY="74.0" mnemonicParsing="false" onAction="#onBrowsePrefix" text="Browse" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Logging and input">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox fx:id="chkContinue" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[-c] continue" />
+                        <CheckBox fx:id="chkLogFile" layoutX="14.0" layoutY="43.0" mnemonicParsing="false" onAction="#onLogFile" text="[-o] log file" />
+                        <TextField fx:id="txtLogFileFolder" layoutX="14.0" layoutY="69.0" />
+                        <Button fx:id="btnLogFileFolderBrowse" layoutX="195.0" layoutY="69.0" mnemonicParsing="false" onAction="#onLogFileFolderBrowse" text="Browse" />
+                        <CheckBox fx:id="chkLogFileAppend" layoutX="154.0" layoutY="43.0" mnemonicParsing="false" onAction="#onAppendLogFile" text="[-a] append log file" />
+                        <CheckBox fx:id="chkForceHtml" layoutX="14.0" layoutY="103.0" mnemonicParsing="false" text="[-F] force html" />
+                        <CheckBox fx:id="chkBaseURL" layoutX="322.0" layoutY="14.0" mnemonicParsing="false" text="[-B] base URLs" />
+                        <TextField fx:id="txtBaseURL" layoutX="322.0" layoutY="40.0" />
+                        <Label layoutX="322.0" layoutY="73.0" text="Additional Params" />
+                        <TextField fx:id="txtAdditionalParams" layoutX="322.0" layoutY="91.0" />
+                        <Label layoutX="125.0" layoutY="44.0" text="or" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Download">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox fx:id="chkWait" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[-w] wait" />
+                        <TextField fx:id="txtWait" layoutX="101.0" layoutY="10.0" prefHeight="25.0" prefWidth="44.0" />
+                        <Label layoutX="152.0" layoutY="14.0" text="sec." />
+                        <CheckBox fx:id="chkRandomWait" layoutX="14.0" layoutY="43.0" mnemonicParsing="false" text="--random-wait" />
+                        <CheckBox fx:id="chkLimitRate" layoutX="14.0" layoutY="69.0" mnemonicParsing="false" onAction="#onLimitRate" text="--limit-rate" />
+                        <TextField fx:id="txtLimitRate" layoutX="115.0" layoutY="66.0" prefHeight="25.0" prefWidth="44.0" />
+                        <ComboBox fx:id="cmbLimitRate" layoutX="165.0" layoutY="67.0" prefHeight="26.0" prefWidth="113.0" />
+                        <CheckBox fx:id="chkTries" layoutX="14.0" layoutY="103.0" mnemonicParsing="false" text="[-t] tries" />
+                        <TextField fx:id="txtTries" layoutX="101.0" layoutY="99.0" prefHeight="25.0" prefWidth="44.0" />
+                        <CheckBox fx:id="chkTimeout" layoutX="14.0" layoutY="136.0" mnemonicParsing="false" text="[-T] timeout" />
+                        <TextField fx:id="txtTimeout" layoutX="121.0" layoutY="132.0" prefHeight="25.0" prefWidth="44.0" />
+                        <Label layoutX="172.0" layoutY="137.0" text="sec." />
+                        <CheckBox fx:id="chkServerResponse" layoutX="309.0" layoutY="14.0" mnemonicParsing="false" text="[-S] server response" />
+                        <CheckBox fx:id="chkRetryConnRefused" layoutX="309.0" layoutY="43.0" mnemonicParsing="false" text="--retry-connrefused" />
+                        <CheckBox fx:id="chkNoClobber" layoutX="309.0" layoutY="69.0" mnemonicParsing="false" text="[-nc] no clobber" />
+                        <CheckBox fx:id="chkTimeStamping" layoutX="309.0" layoutY="103.0" mnemonicParsing="false" text="[-N] time stamping" />
+                     </children></AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Directories">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox fx:id="chkNoDirectories" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[-nd] no directories" />
+                        <CheckBox fx:id="chkForceDirectories" layoutX="14.0" layoutY="39.0" mnemonicParsing="false" text="[-x] force directories" />
+                        <CheckBox fx:id="chkCutDirs" layoutX="14.0" layoutY="64.0" mnemonicParsing="false" text="--cut-dirs" />
+                        <TextField fx:id="txtCutDirs" layoutX="14.0" layoutY="88.0" prefHeight="26.0" prefWidth="83.0" />
+                        <CheckBox fx:id="chkNoHostDirs" layoutX="212.0" layoutY="14.0" mnemonicParsing="false" text="[-nH] no host directories" />
+                     </children></AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="HTTP Options">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox fx:id="chkHttpUser" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="--http-user" />
+                        <TextField fx:id="txtHttpUser" layoutX="14.0" layoutY="40.0" prefHeight="25.0" prefWidth="92.0" />
+                        <CheckBox fx:id="chkHttpPaswd" layoutX="128.0" layoutY="14.0" mnemonicParsing="false" text="--http-passwd" />
+                        <TextField fx:id="txtHttpPasswd" layoutX="128.0" layoutY="40.0" prefHeight="25.0" prefWidth="92.0" />
+                        <CheckBox fx:id="chkProxyUser" layoutX="14.0" layoutY="74.0" mnemonicParsing="false" text="--proxy-user" />
+                        <TextField fx:id="txtProxyUser" layoutX="14.0" layoutY="100.0" prefHeight="25.0" prefWidth="92.0" />
+                        <CheckBox fx:id="chkProxyPasswd" layoutX="128.0" layoutY="74.0" mnemonicParsing="false" text="--proxy-passwd" />
+                        <TextField fx:id="txtProxyPasswd" layoutX="128.0" layoutY="100.0" prefHeight="25.0" prefWidth="92.0" />
+                        <CheckBox fx:id="chkPostData" layoutX="14.0" layoutY="133.0" mnemonicParsing="false" text="--post-data" />
+                        <TextField fx:id="txtPostData" layoutX="14.0" layoutY="159.0" prefHeight="25.0" prefWidth="92.0" />
+                        <CheckBox fx:id="chkReferer" layoutX="128.0" layoutY="133.0" mnemonicParsing="false" text="--referer" />
+                        <TextField fx:id="txtReferer" layoutX="128.0" layoutY="159.0" prefHeight="25.0" prefWidth="92.0" />
+                        <CheckBox fx:id="chkCache" layoutX="262.0" layoutY="14.0" mnemonicParsing="false" text="--cache" />
+                        <CheckBox fx:id="chkDefaultPage" layoutX="262.0" layoutY="40.0" mnemonicParsing="false" text="--default-page" />
+                        <TextField fx:id="txtDefaultPage" layoutX="262.0" layoutY="66.0" prefHeight="25.0" prefWidth="92.0" />
+                        <CheckBox fx:id="chkAdjustExtension" layoutX="262.0" layoutY="103.0" mnemonicParsing="false" text="[-E] adjust extension" />
+                        <CheckBox fx:id="chkNoHttpKeepAlive" layoutX="262.0" layoutY="133.0" mnemonicParsing="false" text="--no-http-keep-alive" />
+                        <CheckBox fx:id="chkNoCache" layoutX="386.0" layoutY="14.0" mnemonicParsing="false" text="--no-cache" />
+                        <CheckBox fx:id="chkLoadCookies" layoutX="262.0" layoutY="159.0" mnemonicParsing="false" text="--load-cookies" />
+                        <TextField fx:id="txtLoadCookies" layoutX="262.0" layoutY="185.0" prefHeight="26.0" prefWidth="154.0" />
+                        <Button fx:id="btnLoadCookies" layoutX="422.0" layoutY="185.0" mnemonicParsing="false" text="Browse" />
+                        <CheckBox fx:id="chkSaveCookies" layoutX="498.0" layoutY="158.0" mnemonicParsing="false" text="--save-cookies" />
+                        <TextField fx:id="txtSaveCookies" layoutX="498.0" layoutY="184.0" prefHeight="26.0" prefWidth="154.0" />
+                        <Button fx:id="btnSaveCookies" layoutX="658.0" layoutY="184.0" mnemonicParsing="false" text="Browse" />
+                        <CheckBox fx:id="chkKeepSessionCookies" layoutX="386.0" layoutY="40.0" mnemonicParsing="false" text="--keep-session-cookies" />
+                        <CheckBox fx:id="chkIgnoreLength" layoutX="386.0" layoutY="65.0" mnemonicParsing="false" text="--ignore-length" />
+                        <CheckBox fx:id="chkCompression" layoutX="691.0" layoutY="115.0" mnemonicParsing="false" text="--compression" />
+                        <ComboBox fx:id="cmbCompression" layoutX="689.0" layoutY="142.0" prefHeight="25.0" prefWidth="124.0" />
+                        <CheckBox fx:id="chkMaxRedirect" layoutX="497.0" layoutY="14.0" mnemonicParsing="false" text="--max-redirect" />
+                        <TextField fx:id="txtMaxRedirect" layoutX="624.0" layoutY="11.0" prefHeight="26.0" prefWidth="44.0" />
+                        <CheckBox fx:id="chkSaveHeaders" layoutX="565.0" layoutY="40.0" mnemonicParsing="false" text="--save-headers" />
+                        <CheckBox fx:id="chkUserAgent" layoutX="516.0" layoutY="65.0" mnemonicParsing="false" text="[-U] user agent" />
+                        <ComboBox fx:id="cmbUserAgent" layoutX="512.0" layoutY="92.0" prefHeight="25.0" prefWidth="124.0" />
+                        <CheckBox fx:id="chkContentOnError" layoutX="691.0" layoutY="14.0" mnemonicParsing="false" text="--content-on-error" />
+                        <CheckBox fx:id="chkTrusyServerNames" layoutX="691.0" layoutY="40.0" mnemonicParsing="false" text="--trust-server-names" />
+                        <CheckBox fx:id="chkAuthNoChallenge" layoutX="691.0" layoutY="65.0" mnemonicParsing="false" text="--auth-no-challenge" />
+                        <CheckBox fx:id="chkRetryOnHostError" layoutX="691.0" layoutY="91.0" mnemonicParsing="false" text="--retry-on-host-error" />
+                     </children></AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="HTTPS Options">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox fx:id="chkSecureProtocol" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="--secure-protocol" />
+                        <ComboBox fx:id="cmbSecureProtocol" layoutX="14.0" layoutY="39.0" prefWidth="150.0" />
+                        <CheckBox fx:id="chkHttpsOnly" layoutX="14.0" layoutY="72.0" mnemonicParsing="false" text="--https-only" />
+                        <CheckBox fx:id="chkCiphers" layoutX="14.0" layoutY="94.0" mnemonicParsing="false" text="--ciphers" />
+                        <CheckBox fx:id="chkNoCheckCertificate" layoutX="14.0" layoutY="120.0" mnemonicParsing="false" text="--no-check-certificate" />
+                        <CheckBox fx:id="chkCertificate" layoutX="14.0" layoutY="144.0" mnemonicParsing="false" text="--certificate" />
+                        <TextField fx:id="txtCertificate" layoutX="14.0" layoutY="170.0" prefHeight="26.0" prefWidth="76.0" />
+                        <Button fx:id="btnCertificate" layoutX="95.0" layoutY="171.0" mnemonicParsing="false" text="Browse" />
+                        <CheckBox fx:id="chkCertificateType" layoutX="190.0" layoutY="12.0" mnemonicParsing="false" text="--certificate-type" />
+                        <ComboBox fx:id="cmbCertificateType" layoutX="190.0" layoutY="37.0" prefWidth="150.0" />
+                        <CheckBox fx:id="chkPrivateKey" layoutX="190.0" layoutY="66.0" mnemonicParsing="false" text="--private-key" />
+                        <TextField fx:id="txtPrivateKey" layoutX="190.0" layoutY="92.0" prefHeight="25.0" prefWidth="102.0" />
+                        <Button fx:id="btnPrivateKey" layoutX="300.0" layoutY="92.0" mnemonicParsing="false" text="Browse" />
+                        <CheckBox fx:id="chkPrivateKeyType" layoutX="190.0" layoutY="126.0" mnemonicParsing="false" text="--private-key-type" />
+                        <ComboBox fx:id="cmbPrivateKeyType" layoutX="190.0" layoutY="151.0" prefWidth="150.0" />
+                        <CheckBox fx:id="chkCaCertificate" layoutX="382.0" layoutY="13.0" mnemonicParsing="false" text="--ca-certificate" />
+                        <TextField fx:id="txtCaCertificate" layoutX="382.0" layoutY="39.0" prefHeight="25.0" prefWidth="102.0" />
+                        <Button fx:id="btnCaCertificate" layoutX="492.0" layoutY="39.0" mnemonicParsing="false" text="Browse" />
+                        <CheckBox fx:id="chkCrlFile" layoutX="382.0" layoutY="68.0" mnemonicParsing="false" text="--crl-file" />
+                        <TextField fx:id="txtCrlFile" layoutX="382.0" layoutY="94.0" prefHeight="25.0" prefWidth="102.0" />
+                        <Button fx:id="btnCrlFile" layoutX="492.0" layoutY="94.0" mnemonicParsing="false" text="Browse" />
+                        <CheckBox fx:id="chkRandomFile" layoutX="382.0" layoutY="125.0" mnemonicParsing="false" text="--random-file" />
+                        <TextField fx:id="txtRandomFile" layoutX="382.0" layoutY="151.0" prefHeight="25.0" prefWidth="102.0" />
+                        <Button fx:id="btnRandomFile" layoutX="492.0" layoutY="151.0" mnemonicParsing="false" text="Browse" />
+                        <CheckBox fx:id="chkEgdFile" layoutX="571.0" layoutY="13.0" mnemonicParsing="false" text="--egd-file" />
+                        <TextField fx:id="txtEgdFile" layoutX="571.0" layoutY="39.0" prefHeight="25.0" prefWidth="102.0" />
+                        <Button fx:id="btnEgdFile" layoutX="681.0" layoutY="39.0" mnemonicParsing="false" text="Browse" />
+                        <CheckBox fx:id="chkNoHsts" layoutX="13.0" layoutY="203.0" mnemonicParsing="false" text="--no-hsts" />
+                        <CheckBox fx:id="chkHstsFile" layoutX="571.0" layoutY="68.0" mnemonicParsing="false" text="--hsts-file" />
+                        <TextField fx:id="txtHstsFile" layoutX="571.0" layoutY="94.0" prefHeight="25.0" prefWidth="102.0" />
+                        <Button fx:id="btnHstsFile" layoutX="681.0" layoutY="94.0" mnemonicParsing="false" text="Browse" />
+                        <CheckBox fx:id="chkWarcFile" layoutX="571.0" layoutY="125.0" mnemonicParsing="false" text="--warc-file" />
+                        <TextField fx:id="txtWarcFile" layoutX="571.0" layoutY="151.0" prefHeight="25.0" prefWidth="102.0" />
+                        <Button fx:id="btnWarcFile" layoutX="681.0" layoutY="151.0" mnemonicParsing="false" text="Browse" />
+                        <CheckBox fx:id="chkWarcHeader" layoutX="571.0" layoutY="180.0" mnemonicParsing="false" text="--warc-header" />
+                        <TextField fx:id="txtWarcHeader" layoutX="571.0" layoutY="199.0" prefHeight="25.0" prefWidth="102.0" />
+                        <CheckBox fx:id="chkWarcMaxSize" layoutX="698.0" layoutY="180.0" mnemonicParsing="false" text="--warc-max-size" />
+                        <TextField fx:id="txtWarcMaxSize" layoutX="698.0" layoutY="199.0" prefHeight="25.0" prefWidth="102.0" />
+                        <CheckBox fx:id="chkWarcCdx" layoutX="190.0" layoutY="239.0" mnemonicParsing="false" text="--warc-cdx" />
+                        <CheckBox fx:id="chkWarcDedup" layoutX="381.0" layoutY="243.0" mnemonicParsing="false" text="--warc-dedup" />
+                        <TextField fx:id="txtWarcDedup" layoutX="381.0" layoutY="269.0" prefHeight="25.0" prefWidth="102.0" />
+                        <Button fx:id="btnWarcDedup" layoutX="492.0" layoutY="269.0" mnemonicParsing="false" text="Browse" />
+                        <CheckBox fx:id="chkNoWarcCompression" layoutX="190.0" layoutY="190.0" mnemonicParsing="false" text="--no-warc-compression" />
+                        <CheckBox fx:id="chkNoWarcDigests" layoutX="190.0" layoutY="216.0" mnemonicParsing="false" text="--no-warc-digests" />
+                        <CheckBox fx:id="chkNoWarcKeepLog" layoutX="190.0" layoutY="265.0" mnemonicParsing="false" text="--no-warc-keep-log" />
+                        <CheckBox fx:id="chkWarcTempDir" layoutX="382.0" layoutY="186.0" mnemonicParsing="false" text="--warc-tempdir" />
+                        <TextField fx:id="txtWarcTempDir" layoutX="382.0" layoutY="212.0" prefHeight="25.0" prefWidth="102.0" />
+                        <Button fx:id="btnWarcTempDir" layoutX="492.0" layoutY="212.0" mnemonicParsing="false" text="Browse" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="FTP Options">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox fx:id="chkFtpUser" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="--ftp-user" />
+                        <TextField fx:id="txtFtpUser" layoutX="14.0" layoutY="39.0" prefHeight="25.0" prefWidth="80.0" />
+                        <CheckBox fx:id="chkFtpPasswd" layoutX="109.0" layoutY="14.0" mnemonicParsing="false" text="--ftp-password" />
+                        <TextField fx:id="txtFtpPasswd" layoutX="109.0" layoutY="39.0" prefHeight="25.0" prefWidth="80.0" />
+                        <CheckBox fx:id="chkNoRemoveListing" layoutX="14.0" layoutY="73.0" mnemonicParsing="false" text="--no-remove-listing" />
+                        <CheckBox fx:id="chkNoGlob" layoutX="14.0" layoutY="100.0" mnemonicParsing="false" text="--no-glob" />
+                        <CheckBox fx:id="chkNoPassiveFtp" layoutX="15.0" layoutY="124.0" mnemonicParsing="false" text="--no-passive-ftp" />
+                        <CheckBox fx:id="chkPreservePermissions" layoutX="15.0" layoutY="151.0" mnemonicParsing="false" text="--preserve-permissions" />
+                        <CheckBox fx:id="chkRetrSymlinks" layoutX="15.0" layoutY="176.0" mnemonicParsing="false" text="--retr-symlinks" />
+                     </children></AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="FTPS Options">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox fx:id="chkFtpsImplicit" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="--ftps-implicit" />
+                        <CheckBox fx:id="chkNoFtpsResumeSsl" layoutX="14.0" layoutY="38.0" mnemonicParsing="false" text="--no-ftps-resume-ssl" />
+                        <CheckBox fx:id="chkFtpsClearDataConnection" layoutX="14.0" layoutY="64.0" mnemonicParsing="false" text="--ftps-clear-data-connection" />
+                        <CheckBox fx:id="chkFtpsFallbackToFtp" layoutX="14.0" layoutY="89.0" mnemonicParsing="false" text="--ftps-fallback-to-ftp" />
+                     </children></AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Recursive retrieval">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox fx:id="chkRecursive" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[-r] recursive" />
+                        <CheckBox fx:id="chkLevel" layoutX="14.0" layoutY="41.0" mnemonicParsing="false" text="[-l] level" />
+                        <TextField fx:id="txtLevel" layoutX="14.0" layoutY="67.0" prefHeight="25.0" prefWidth="77.0" />
+                        <CheckBox fx:id="chkDeleteAfter" layoutX="14.0" layoutY="102.0" mnemonicParsing="false" text="--delete-after" />
+                        <CheckBox fx:id="chkConvertLinks" layoutX="14.0" layoutY="127.0" mnemonicParsing="false" text="[-k] convert links" />
+                        <CheckBox fx:id="chkConvertFileOnly" layoutX="14.0" layoutY="151.0" mnemonicParsing="false" text="--convert-file-only" />
+                        <CheckBox fx:id="chkBackupConverted" layoutX="14.0" layoutY="175.0" mnemonicParsing="false" text="[-K] backup converted" />
+                        <CheckBox fx:id="chkMirror" layoutX="14.0" layoutY="201.0" mnemonicParsing="false" text="[-m] mirror" />
+                        <CheckBox fx:id="chkPageRequisites" layoutX="14.0" layoutY="228.0" mnemonicParsing="false" text="[-p] page requisites" />
+                        <CheckBox fx:id="chkStrictComments" layoutX="14.0" layoutY="252.0" mnemonicParsing="false" text="--strict-comments" />
+                        <CheckBox fx:id="chkRecursiveAcceptList" layoutX="195.0" layoutY="15.0" mnemonicParsing="false" text="[-A] recursive accept list" />
+                        <TextField fx:id="txtRecursiveAcceptList" layoutX="195.0" layoutY="41.0" prefHeight="26.0" prefWidth="182.0" />
+                        <CheckBox fx:id="chkRecursiveRejectList" layoutX="195.0" layoutY="75.0" mnemonicParsing="false" text="[-R] recursive reject list" />
+                        <TextField fx:id="txtRecursiveRejectList" layoutX="195.0" layoutY="101.0" prefHeight="26.0" prefWidth="182.0" />
+                        <CheckBox fx:id="chkAcceptRegex" layoutX="195.0" layoutY="133.0" mnemonicParsing="false" text="--accept-regex" />
+                        <TextField fx:id="txtAcceptRegex" layoutX="195.0" layoutY="159.0" prefHeight="26.0" prefWidth="182.0" />
+                        <CheckBox fx:id="chkRejectRegex" layoutX="195.0" layoutY="192.0" mnemonicParsing="false" text="--reject-regex" />
+                        <TextField fx:id="txtRejectRegex" layoutX="195.0" layoutY="218.0" prefHeight="26.0" prefWidth="182.0" />
+                        <CheckBox fx:id="chkRegexType" layoutX="195.0" layoutY="252.0" mnemonicParsing="false" text="--regex-type" />
+                        <ComboBox fx:id="cmbRegexType" layoutX="195.0" layoutY="283.0" prefHeight="25.0" prefWidth="102.0" />
+                        <CheckBox fx:id="chkDomains" layoutX="396.0" layoutY="15.0" mnemonicParsing="false" text="[-D] domains" />
+                        <TextField fx:id="txtDomains" layoutX="396.0" layoutY="41.0" prefHeight="26.0" prefWidth="182.0" />
+                        <CheckBox fx:id="chkExcludeDomains" layoutX="396.0" layoutY="74.0" mnemonicParsing="false" text="--exclude-domains" />
+                        <TextField fx:id="txtExcludeDomains" layoutX="396.0" layoutY="100.0" prefHeight="26.0" prefWidth="182.0" />
+                        <CheckBox fx:id="chkFollowFtp" layoutX="396.0" layoutY="133.0" mnemonicParsing="false" text="--follow-ftp" />
+                        <CheckBox fx:id="chkFollowTags" layoutX="396.0" layoutY="157.0" mnemonicParsing="false" text="--follow-tags" />
+                        <TextField fx:id="txtFollowTags" layoutX="396.0" layoutY="183.0" prefHeight="26.0" prefWidth="182.0" />
+                        <CheckBox fx:id="chkIgnoreTags" layoutX="396.0" layoutY="218.0" mnemonicParsing="false" text="--ignore-tags" />
+                        <TextField fx:id="txtIgnoreTags" layoutX="396.0" layoutY="244.0" prefHeight="26.0" prefWidth="182.0" />
+                        <CheckBox fx:id="chkIgnoreCase" layoutX="396.0" layoutY="274.0" mnemonicParsing="false" text="--ignore-case" />
+                        <CheckBox fx:id="chkSpanHosts" layoutX="604.0" layoutY="15.0" mnemonicParsing="false" text="[-H] span hosts" />
+                        <CheckBox fx:id="chkRelative" layoutX="604.0" layoutY="41.0" mnemonicParsing="false" text="[-L] relative" />
+                        <CheckBox fx:id="chkIncludeDirectories" layoutX="604.0" layoutY="66.0" mnemonicParsing="false" text="[-I] include directories" />
+                        <TextField fx:id="txtIncludeDirectories" layoutX="604.0" layoutY="92.0" prefHeight="26.0" prefWidth="182.0" />
+                        <CheckBox fx:id="chkExcludeDirectories" layoutX="604.0" layoutY="125.0" mnemonicParsing="false" text="[-X] exclude directories" />
+                        <TextField fx:id="txtExcludeDirectories" layoutX="604.0" layoutY="151.0" prefHeight="26.0" prefWidth="182.0" />
+                        <CheckBox fx:id="chkNoParent" layoutX="604.0" layoutY="183.0" mnemonicParsing="false" text="[-np] no-parent" />
+                     </children></AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <VBox>
+         <children>
+            <HBox spacing="8.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Region prefHeight="25.0" prefWidth="497.0" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="btnPreview" mnemonicParsing="false" onAction="#onPreview" text="Preview command" />
+                  <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#onAdd" text="Add" />
+                  <Button fx:id="btnAddRun" mnemonicParsing="false" onAction="#onAddRun" text="Add and Run" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="8.0" top="8.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="8.0" left="8.0" right="8.0" />
+   </padding>
+</VBox>
