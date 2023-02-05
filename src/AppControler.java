@@ -614,7 +614,25 @@ public class AppControler {
         File file = fileChooser.showOpenDialog(window);
         event.consume();
         if (file!=null){
-            txtInputFile.setText(file.getPath());
+            txtInputFile.setText(file.getAbsolutePath());
+        }
+    }
+    public void onBrowseSaveCookies(ActionEvent event){
+        Window window = ((Node) (event.getSource())).getScene().getWindow();
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(window);
+        event.consume();
+        if (file!=null){
+            txtSaveCookies.setText(file.getAbsolutePath());
+        }
+    }
+    public void onBrowseLoadCookies(ActionEvent event){
+        Window window = ((Node) (event.getSource())).getScene().getWindow();
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(window);
+        event.consume();
+        if (file!=null){
+            txtLoadCookies.setText(file.getAbsolutePath());
         }
     }
     public void onBrowsePrefix(ActionEvent event){
@@ -642,6 +660,40 @@ public class AppControler {
         cmbLimitRate.getSelectionModel().select(0);
     }
 
+    public void onCompression(){
+        cmbCompression.getItems().clear();
+        cmbCompression.getItems().addAll("auto","gzip","none");
+        cmbCompression.getSelectionModel().select(0);
+    }
+
+    public void onUserAgent(){
+        cmbUserAgent.getItems().clear();
+        cmbUserAgent.getItems().addAll(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:53.0) Gecko/20100101 Firefox/53.0",
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.79 Safari/537.36 Edge/14.14393",
+                "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)",
+                "Mozilla/5.0 (Windows; U; MSIE 7.0; Windows NT 6.0; en-US)",
+                "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; .NET CLR 1.1.4322; .NET CLR 2.0.50727; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)",
+                "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.0; Trident/5.0;  Trident/5.0)",
+                "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0; MDDCJS)",
+                "Mozilla/5.0 (compatible, MSIE 11, Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko",
+                "Mozilla/5.0 (iPad; CPU OS 8_4_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12H321 Safari/600.1.4",
+                "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1",
+                "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+                "Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)",
+                "Mozilla/5.0 (Linux; Android 6.0.1; SAMSUNG SM-G570Y Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/44.0.2403.133 Mobile Safari/537.36",
+                "Mozilla/5.0 (Linux; Android 5.0; SAMSUNG SM-N900 Build/LRX21V) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/2.1 Chrome/34.0.1847.76 Mobile Safari/537.36",
+                "Mozilla/5.0 (Linux; Android 6.0.1; SAMSUNG SM-N910F Build/MMB29M) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/44.0.2403.133 Mobile Safari/537.36",
+                "Mozilla/5.0 (Linux; U; Android-4.0.3; en-us; Galaxy Nexus Build/IML74K) AppleWebKit/535.7 (KHTML, like Gecko) CrMo/16.0.912.75 Mobile Safari/535.7",
+                "Mozilla/5.0 (Linux; Android 7.0; HTC 10 Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.83 Mobile Safari/537.36",
+                "curl/7.35.0",
+                "Wget/1.15 (linux-gnu)",
+                "Lynx/2.8.8pre.4 libwww-FM/2.14 SSL-MM/1.4.1 GNUTLS/2.12.23"
+        );
+        cmbUserAgent.getSelectionModel().select(0);
+    }
+
     private String getCMD(){
         String command="";
         String wget = "wget";
@@ -652,6 +704,224 @@ public class AppControler {
         args="";
 
         //set args
+
+        //-compression
+        if(chkCompression.isSelected()==true){
+            args +=" --compression=" + cmbCompression.getItems().get(cmbCompression.getSelectionModel().getSelectedIndex());
+        }
+
+
+        //--retry-on-host-error
+        if(chkRetryOnHostError.isSelected()==true){
+            args +=" --retry-on-host-error";
+        }
+
+        //--auth-no-challenge
+        if(chkAuthNoChallenge.isSelected()==true){
+            args +=" --auth-no-challenge";
+        }
+
+        //--trust-server-names
+        if(chkTrusyServerNames.isSelected()==true){
+            args +=" --trust-server-names";
+        }
+
+        //--content-on-error
+        if(chkContentOnError.isSelected()==true){
+            args +=" --content-on-error";
+        }
+
+        //-U user agent
+        if(chkUserAgent.isSelected()==true){
+            args +=" -U \"" + cmbUserAgent.getItems().get(cmbUserAgent.getSelectionModel().getSelectedIndex())+"\"";
+        }
+
+
+        //--save-headers
+        if(chkSaveHeaders.isSelected()==true){
+            args +=" --save-headers";
+        }
+
+        //--max-redirect
+        if(chkMaxRedirect.isSelected()==true){
+            if(isNumericInt(txtMaxRedirect.getText())==false){
+                message="Max redirect input is not numeric!\nPlease enter an integer number";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --max-redirect="+txtMaxRedirect.getText();
+            }
+        }
+
+
+        //--ignore-length
+        if(chkIgnoreLength.isSelected()==true){
+            args +=" --ignore-length";
+        }
+
+        //--keep-session-cookies
+        if(chkKeepSessionCookies.isSelected()==true){
+            args +=" --keep-session-cookies";
+        }
+
+        //--no-cache
+        if(chkNoCache.isSelected()==true){
+            args += " --no-cache";
+        }
+
+        //--save-cookies
+        if(chkSaveCookies.isSelected()==true){
+            if(txtSaveCookies.getText().length()==0 || txtSaveCookies.getText()==""){
+                message="Save cookies input is not valid!\nPlease browse for a save cookie file.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --save-cookies "+txtSaveCookies.getText();
+            }
+        }
+
+        //--load-cookies
+        if(chkLoadCookies.isSelected()==true){
+            if(txtLoadCookies.getText().length()==0 || txtLoadCookies.getText()==""){
+                message="Load cookies input is not valid!\nPlease browse for a cookie file.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --load-cookies "+txtLoadCookies.getText();
+            }
+        }
+
+        //--no-http-keep-alive
+        if(chkNoHttpKeepAlive.isSelected()==true){
+            args +=" --no-http-keep-alive";
+        }
+
+        //-E adjust extension
+        if(chkAdjustExtension.isSelected()==true){
+            args +=" -E";
+        }
+
+        //--default-page
+        if(chkDefaultPage.isSelected()==true){
+            if(txtDefaultPage.getText().length()==0 || txtDefaultPage.getText()==""){
+                message="Default page input is not valid!\nPlease enter a text value.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --default-page="+txtDefaultPage.getText();
+            }
+        }
+
+        //--cache
+        if(chkCache.isSelected()==true){
+            args +=" --cache";
+        }
+
+        //--referer
+        if(chkReferer.isSelected()==true){
+            if(txtReferer.getText().length()==0 || txtReferer.getText()==""){
+                try {
+                    new URL(txtReferer.getText());
+                } catch (MalformedURLException malformedURLException) {
+                    message="Referer URL is not valid!\nPlease set a valid URL!";
+                    txtArea.setText(message);
+                    command = "";
+                    return command;
+                }
+                args += " --referer="+txtReferer.getText();
+            }
+        }
+
+        //--post-data
+        if(chkPostData.isSelected()==true){
+            if(txtPostData.getText().length()==0 || txtPostData.getText()==""){
+                message="Post data input is not valid!\nPlease enter a text value.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --post-data=\""+txtPostData.getText()+"\"";
+            }
+        }
+
+        //--proxy-passwd
+        if(chkProxyPasswd.isSelected()==true){
+            if(txtProxyPasswd.getText().length()==0 || txtProxyPasswd.getText()==""){
+                message="Proxy password input is not valid!\nPlease enter a text value.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --proxy-passwd="+txtProxyPasswd.getText();
+            }
+        }
+
+        //--proxy-user
+        if(chkProxyUser.isSelected()==true){
+            if(txtProxyUser.getText().length()==0 || txtProxyUser.getText()==""){
+                message="Proxy user input is not valid!\nPlease enter a text value.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --proxy-user="+txtProxyUser.getText();
+            }
+        }
+
+        //--http-passwd
+        if(chkHttpPaswd.isSelected()==true){
+            if(txtHttpPasswd.getText().length()==0 || txtHttpPasswd.getText()==""){
+                message="Http password input is not valid!\nPlease enter a text value.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --http-passwd="+txtHttpPasswd.getText();
+            }
+        }
+
+        //--http-user
+        if(chkHttpUser.isSelected()==true){
+            if(txtHttpUser.getText().length()==0 || txtHttpUser.getText()==""){
+                message="Http user input is not valid!\nPlease enter a text value.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --http-user="+txtHttpUser.getText();
+            }
+        }
+
+        //-cut dirs
+        if(chkCutDirs.isSelected()==true){
+            if(isNumericInt(txtCutDirs.getText())==false){
+                message="Cut directories input is not numeric!\nPlease enter an integer number";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --cut-dirs="+txtCutDirs.getText();
+            }
+        }
+
+        //-nH No Host Dirs
+        if(chkNoHostDirs.isSelected()==true){
+            args += " -nH";
+        }
+
+        //-x force dirs
+        if(chkForceDirectories.isSelected()==true){
+            args += " -x";
+        }
+
+        //-nd no dirs
+        if(chkNoDirectories.isSelected()==true){
+            args +=" -nd";
+        }
 
         //-N time stamping
         if(chkTimeStamping.isSelected()==true){

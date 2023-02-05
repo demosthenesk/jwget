@@ -266,18 +266,18 @@
                         <CheckBox fx:id="chkNoCache" layoutX="386.0" layoutY="14.0" mnemonicParsing="false" text="--no-cache" />
                         <CheckBox fx:id="chkLoadCookies" layoutX="262.0" layoutY="159.0" mnemonicParsing="false" text="--load-cookies" />
                         <TextField fx:id="txtLoadCookies" layoutX="262.0" layoutY="185.0" prefHeight="26.0" prefWidth="154.0" />
-                        <Button fx:id="btnLoadCookies" layoutX="422.0" layoutY="185.0" mnemonicParsing="false" text="Browse" />
+                        <Button fx:id="btnLoadCookies" layoutX="422.0" layoutY="185.0" mnemonicParsing="false" onAction="#onBrowseLoadCookies" text="Browse" />
                         <CheckBox fx:id="chkSaveCookies" layoutX="498.0" layoutY="158.0" mnemonicParsing="false" text="--save-cookies" />
                         <TextField fx:id="txtSaveCookies" layoutX="498.0" layoutY="184.0" prefHeight="26.0" prefWidth="154.0" />
-                        <Button fx:id="btnSaveCookies" layoutX="658.0" layoutY="184.0" mnemonicParsing="false" text="Browse" />
+                        <Button fx:id="btnSaveCookies" layoutX="658.0" layoutY="184.0" mnemonicParsing="false" onAction="#onBrowseSaveCookies" text="Browse" />
                         <CheckBox fx:id="chkKeepSessionCookies" layoutX="386.0" layoutY="40.0" mnemonicParsing="false" text="--keep-session-cookies" />
                         <CheckBox fx:id="chkIgnoreLength" layoutX="386.0" layoutY="65.0" mnemonicParsing="false" text="--ignore-length" />
-                        <CheckBox fx:id="chkCompression" layoutX="691.0" layoutY="115.0" mnemonicParsing="false" text="--compression" />
+                        <CheckBox fx:id="chkCompression" layoutX="691.0" layoutY="115.0" mnemonicParsing="false" onAction="#onCompression" text="--compression" />
                         <ComboBox fx:id="cmbCompression" layoutX="689.0" layoutY="142.0" prefHeight="25.0" prefWidth="124.0" />
                         <CheckBox fx:id="chkMaxRedirect" layoutX="497.0" layoutY="14.0" mnemonicParsing="false" text="--max-redirect" />
                         <TextField fx:id="txtMaxRedirect" layoutX="624.0" layoutY="11.0" prefHeight="26.0" prefWidth="44.0" />
                         <CheckBox fx:id="chkSaveHeaders" layoutX="565.0" layoutY="40.0" mnemonicParsing="false" text="--save-headers" />
-                        <CheckBox fx:id="chkUserAgent" layoutX="516.0" layoutY="65.0" mnemonicParsing="false" text="[-U] user agent" />
+                        <CheckBox fx:id="chkUserAgent" layoutX="516.0" layoutY="65.0" mnemonicParsing="false" onAction="#onUserAgent" text="[-U] user agent" />
                         <ComboBox fx:id="cmbUserAgent" layoutX="512.0" layoutY="92.0" prefHeight="25.0" prefWidth="124.0" />
                         <CheckBox fx:id="chkContentOnError" layoutX="691.0" layoutY="14.0" mnemonicParsing="false" text="--content-on-error" />
                         <CheckBox fx:id="chkTrusyServerNames" layoutX="691.0" layoutY="40.0" mnemonicParsing="false" text="--trust-server-names" />
