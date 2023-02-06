@@ -24,7 +24,7 @@ jwget was developed with javaFX 19.0.2.1
 
 For help for wget you can visit [wget(1) - Linux manual page](https://man7.org/linux/man-pages/man1/wget.1.html)
 
-## Screenshot
+## Screenshots
 
 ![jwget.png](screenshots/jwget.png)
 
