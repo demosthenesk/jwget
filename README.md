@@ -28,34 +28,18 @@ For help for wget you can visit [wget(1) - Linux manual page](https://man7.org/l
 
 ![jwget.png](screenshots/jwget.png)
 
-
-
-![jwget2.png](/home/user/Documents/Workspaces/java/JavaFX/jwget/screenshots/jwget2.png)
-
-
+![jwget2.png](screenshots/jwget2.png)
 
 ![jwget3.png](screenshots/jwget3.png)
 
-
-
 ![jwget4.png](screenshots/jwget4.png)
-
-
 
 ![jwget5.png](screenshots/jwget5.png)
 
-
-
 ![jwget6.png](screenshots/jwget6.png)
-
-
 
 ![jwget7.png](screenshots/jwget7.png)
 
-
-
 ![jwget8.png](screenshots/jwget8.png)
-
-
 
 ![jwget9.png](screenshots/jwget9.png)
