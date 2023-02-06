@@ -199,7 +199,7 @@
                         <Button fx:id="btnLogFileFolderBrowse" layoutX="195.0" layoutY="69.0" mnemonicParsing="false" onAction="#onLogFileFolderBrowse" text="Browse" />
                         <CheckBox fx:id="chkLogFileAppend" layoutX="154.0" layoutY="43.0" mnemonicParsing="false" onAction="#onAppendLogFile" text="[-a] append log file" />
                         <CheckBox fx:id="chkForceHtml" layoutX="14.0" layoutY="103.0" mnemonicParsing="false" text="[-F] force html" />
-                        <CheckBox fx:id="chkBaseURL" layoutX="322.0" layoutY="14.0" mnemonicParsing="false" text="[-B] base URLs" />
+                        <CheckBox fx:id="chkBaseURL" layoutX="322.0" layoutY="14.0" mnemonicParsing="false" text="[-B] base URL" />
                         <TextField fx:id="txtBaseURL" layoutX="322.0" layoutY="40.0" />
                         <Label layoutX="322.0" layoutY="73.0" text="Additional Params" />
                         <TextField fx:id="txtAdditionalParams" layoutX="322.0" layoutY="91.0" />
@@ -290,40 +290,40 @@
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <CheckBox fx:id="chkSecureProtocol" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="--secure-protocol" />
+                        <CheckBox fx:id="chkSecureProtocol" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onSecureProtocol" text="--secure-protocol" />
                         <ComboBox fx:id="cmbSecureProtocol" layoutX="14.0" layoutY="39.0" prefWidth="150.0" />
                         <CheckBox fx:id="chkHttpsOnly" layoutX="14.0" layoutY="72.0" mnemonicParsing="false" text="--https-only" />
                         <CheckBox fx:id="chkCiphers" layoutX="14.0" layoutY="94.0" mnemonicParsing="false" text="--ciphers" />
                         <CheckBox fx:id="chkNoCheckCertificate" layoutX="14.0" layoutY="120.0" mnemonicParsing="false" text="--no-check-certificate" />
                         <CheckBox fx:id="chkCertificate" layoutX="14.0" layoutY="144.0" mnemonicParsing="false" text="--certificate" />
                         <TextField fx:id="txtCertificate" layoutX="14.0" layoutY="170.0" prefHeight="26.0" prefWidth="76.0" />
-                        <Button fx:id="btnCertificate" layoutX="95.0" layoutY="171.0" mnemonicParsing="false" text="Browse" />
-                        <CheckBox fx:id="chkCertificateType" layoutX="190.0" layoutY="12.0" mnemonicParsing="false" text="--certificate-type" />
+                        <Button fx:id="btnCertificate" layoutX="95.0" layoutY="171.0" mnemonicParsing="false" onAction="#onBrowseCertificate" text="Browse" />
+                        <CheckBox fx:id="chkCertificateType" layoutX="190.0" layoutY="12.0" mnemonicParsing="false" onAction="#onCertificateType" text="--certificate-type" />
                         <ComboBox fx:id="cmbCertificateType" layoutX="190.0" layoutY="37.0" prefWidth="150.0" />
                         <CheckBox fx:id="chkPrivateKey" layoutX="190.0" layoutY="66.0" mnemonicParsing="false" text="--private-key" />
                         <TextField fx:id="txtPrivateKey" layoutX="190.0" layoutY="92.0" prefHeight="25.0" prefWidth="102.0" />
-                        <Button fx:id="btnPrivateKey" layoutX="300.0" layoutY="92.0" mnemonicParsing="false" text="Browse" />
-                        <CheckBox fx:id="chkPrivateKeyType" layoutX="190.0" layoutY="126.0" mnemonicParsing="false" text="--private-key-type" />
+                        <Button fx:id="btnPrivateKey" layoutX="300.0" layoutY="92.0" mnemonicParsing="false" onAction="#onBrowsePrivateKey" text="Browse" />
+                        <CheckBox fx:id="chkPrivateKeyType" layoutX="190.0" layoutY="126.0" mnemonicParsing="false" onAction="#onPrivateKeyType" text="--private-key-type" />
                         <ComboBox fx:id="cmbPrivateKeyType" layoutX="190.0" layoutY="151.0" prefWidth="150.0" />
                         <CheckBox fx:id="chkCaCertificate" layoutX="382.0" layoutY="13.0" mnemonicParsing="false" text="--ca-certificate" />
                         <TextField fx:id="txtCaCertificate" layoutX="382.0" layoutY="39.0" prefHeight="25.0" prefWidth="102.0" />
-                        <Button fx:id="btnCaCertificate" layoutX="492.0" layoutY="39.0" mnemonicParsing="false" text="Browse" />
+                        <Button fx:id="btnCaCertificate" layoutX="492.0" layoutY="39.0" mnemonicParsing="false" onAction="#onBrowseCaCertificate" text="Browse" />
                         <CheckBox fx:id="chkCrlFile" layoutX="382.0" layoutY="68.0" mnemonicParsing="false" text="--crl-file" />
                         <TextField fx:id="txtCrlFile" layoutX="382.0" layoutY="94.0" prefHeight="25.0" prefWidth="102.0" />
-                        <Button fx:id="btnCrlFile" layoutX="492.0" layoutY="94.0" mnemonicParsing="false" text="Browse" />
+                        <Button fx:id="btnCrlFile" layoutX="492.0" layoutY="94.0" mnemonicParsing="false" onAction="#onBrowseCrlFile" text="Browse" />
                         <CheckBox fx:id="chkRandomFile" layoutX="382.0" layoutY="125.0" mnemonicParsing="false" text="--random-file" />
                         <TextField fx:id="txtRandomFile" layoutX="382.0" layoutY="151.0" prefHeight="25.0" prefWidth="102.0" />
-                        <Button fx:id="btnRandomFile" layoutX="492.0" layoutY="151.0" mnemonicParsing="false" text="Browse" />
-                        <CheckBox fx:id="chkEgdFile" layoutX="571.0" layoutY="13.0" mnemonicParsing="false" text="--egd-file" />
-                        <TextField fx:id="txtEgdFile" layoutX="571.0" layoutY="39.0" prefHeight="25.0" prefWidth="102.0" />
-                        <Button fx:id="btnEgdFile" layoutX="681.0" layoutY="39.0" mnemonicParsing="false" text="Browse" />
+                        <Button fx:id="btnRandomFile" layoutX="492.0" layoutY="151.0" mnemonicParsing="false" onAction="#onBrowseRandomFile" text="Browse" />
+                        <CheckBox fx:id="chkEgdFile" layoutX="568.0" layoutY="235.0" mnemonicParsing="false" text="--egd-file" />
+                        <TextField fx:id="txtEgdFile" layoutX="568.0" layoutY="261.0" prefHeight="25.0" prefWidth="102.0" />
+                        <Button fx:id="btnEgdFile" layoutX="678.0" layoutY="261.0" mnemonicParsing="false" onAction="#onBrowseEgdFile" text="Browse" />
                         <CheckBox fx:id="chkNoHsts" layoutX="13.0" layoutY="203.0" mnemonicParsing="false" text="--no-hsts" />
                         <CheckBox fx:id="chkHstsFile" layoutX="571.0" layoutY="68.0" mnemonicParsing="false" text="--hsts-file" />
                         <TextField fx:id="txtHstsFile" layoutX="571.0" layoutY="94.0" prefHeight="25.0" prefWidth="102.0" />
-                        <Button fx:id="btnHstsFile" layoutX="681.0" layoutY="94.0" mnemonicParsing="false" text="Browse" />
+                        <Button fx:id="btnHstsFile" layoutX="681.0" layoutY="94.0" mnemonicParsing="false" onAction="#onBrowseHstsFile" text="Browse" />
                         <CheckBox fx:id="chkWarcFile" layoutX="571.0" layoutY="125.0" mnemonicParsing="false" text="--warc-file" />
                         <TextField fx:id="txtWarcFile" layoutX="571.0" layoutY="151.0" prefHeight="25.0" prefWidth="102.0" />
-                        <Button fx:id="btnWarcFile" layoutX="681.0" layoutY="151.0" mnemonicParsing="false" text="Browse" />
+                        <Button fx:id="btnWarcFile" layoutX="681.0" layoutY="151.0" mnemonicParsing="false" onAction="#onBrowseWarcFile" text="Browse" />
                         <CheckBox fx:id="chkWarcHeader" layoutX="571.0" layoutY="180.0" mnemonicParsing="false" text="--warc-header" />
                         <TextField fx:id="txtWarcHeader" layoutX="571.0" layoutY="199.0" prefHeight="25.0" prefWidth="102.0" />
                         <CheckBox fx:id="chkWarcMaxSize" layoutX="698.0" layoutY="180.0" mnemonicParsing="false" text="--warc-max-size" />
@@ -331,13 +331,16 @@
                         <CheckBox fx:id="chkWarcCdx" layoutX="190.0" layoutY="239.0" mnemonicParsing="false" text="--warc-cdx" />
                         <CheckBox fx:id="chkWarcDedup" layoutX="381.0" layoutY="243.0" mnemonicParsing="false" text="--warc-dedup" />
                         <TextField fx:id="txtWarcDedup" layoutX="381.0" layoutY="269.0" prefHeight="25.0" prefWidth="102.0" />
-                        <Button fx:id="btnWarcDedup" layoutX="492.0" layoutY="269.0" mnemonicParsing="false" text="Browse" />
+                        <Button fx:id="btnWarcDedup" layoutX="492.0" layoutY="269.0" mnemonicParsing="false" onAction="#onBrowseWarcDedup" text="Browse" />
                         <CheckBox fx:id="chkNoWarcCompression" layoutX="190.0" layoutY="190.0" mnemonicParsing="false" text="--no-warc-compression" />
                         <CheckBox fx:id="chkNoWarcDigests" layoutX="190.0" layoutY="216.0" mnemonicParsing="false" text="--no-warc-digests" />
                         <CheckBox fx:id="chkNoWarcKeepLog" layoutX="190.0" layoutY="265.0" mnemonicParsing="false" text="--no-warc-keep-log" />
                         <CheckBox fx:id="chkWarcTempDir" layoutX="382.0" layoutY="186.0" mnemonicParsing="false" text="--warc-tempdir" />
                         <TextField fx:id="txtWarcTempDir" layoutX="382.0" layoutY="212.0" prefHeight="25.0" prefWidth="102.0" />
-                        <Button fx:id="btnWarcTempDir" layoutX="492.0" layoutY="212.0" mnemonicParsing="false" text="Browse" />
+                        <Button fx:id="btnWarcTempDir" layoutX="492.0" layoutY="212.0" mnemonicParsing="false" onAction="#onBrowseWarcTempDir" text="Browse" />
+                        <CheckBox fx:id="chkCaDirectory" layoutX="573.0" layoutY="11.0" mnemonicParsing="false" text="--ca-directory" />
+                        <TextField fx:id="txtCaDirectory" layoutX="573.0" layoutY="37.0" prefHeight="25.0" prefWidth="102.0" />
+                        <Button fx:id="btnCaDirectory" layoutX="683.0" layoutY="37.0" mnemonicParsing="false" onAction="#onBrowseCaDirectory" text="Browse" />
                      </children>
                   </AnchorPane>
                </content>
@@ -391,7 +394,7 @@
                         <TextField fx:id="txtAcceptRegex" layoutX="195.0" layoutY="159.0" prefHeight="26.0" prefWidth="182.0" />
                         <CheckBox fx:id="chkRejectRegex" layoutX="195.0" layoutY="192.0" mnemonicParsing="false" text="--reject-regex" />
                         <TextField fx:id="txtRejectRegex" layoutX="195.0" layoutY="218.0" prefHeight="26.0" prefWidth="182.0" />
-                        <CheckBox fx:id="chkRegexType" layoutX="195.0" layoutY="252.0" mnemonicParsing="false" text="--regex-type" />
+                        <CheckBox fx:id="chkRegexType" layoutX="195.0" layoutY="252.0" mnemonicParsing="false" onAction="#onRegexType" text="--regex-type" />
                         <ComboBox fx:id="cmbRegexType" layoutX="195.0" layoutY="283.0" prefHeight="25.0" prefWidth="102.0" />
                         <CheckBox fx:id="chkDomains" layoutX="396.0" layoutY="15.0" mnemonicParsing="false" text="[-D] domains" />
                         <TextField fx:id="txtDomains" layoutX="396.0" layoutY="41.0" prefHeight="26.0" prefWidth="182.0" />

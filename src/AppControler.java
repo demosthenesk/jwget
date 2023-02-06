@@ -405,6 +405,12 @@ public class AppControler {
     private TextField txtExcludeDirectories;
     @FXML
     private CheckBox chkNoParent;
+    @FXML
+    private CheckBox chkCaDirectory;
+    @FXML
+    private TextField txtCaDirectory;
+    @FXML
+    private Button btnCaDirectory;
 
     public AppControler() throws IOException {
 
@@ -600,7 +606,6 @@ public class AppControler {
         if(selectedDirectory != null){
             txtLogFileFolder.setText(selectedDirectory.getAbsolutePath()+"/log.txt");
         }
-
     }
     public void onAppendLogFile(){
         chkLogFile.setSelected(false);
@@ -693,6 +698,146 @@ public class AppControler {
         );
         cmbUserAgent.getSelectionModel().select(0);
     }
+    public void onSecureProtocol(){
+        cmbSecureProtocol.getItems().clear();
+        cmbSecureProtocol.getItems().addAll(
+                "auto",
+                "SSLv2",
+                "SSLv3",
+                "TLSv1",
+                "TLSv1_1",
+                "TLSv1_2",
+                "TLSv1_3",
+                "PFS"
+        );
+        cmbSecureProtocol.getSelectionModel().select(0);
+    }
+    public void onCertificateType(){
+        cmbCertificateType.getItems().clear();
+        cmbCertificateType.getItems().addAll(
+                "PEM",
+                "DER",
+                "ASN1"
+        );
+        cmbCertificateType.getSelectionModel().select(0);
+    }
+    public void onPrivateKeyType(){
+        cmbPrivateKeyType.getItems().clear();
+        cmbPrivateKeyType.getItems().addAll(
+                "DER",
+                "PEM"
+        );
+        cmbPrivateKeyType.getSelectionModel().select(0);
+    }
+    public void onRegexType(){
+        cmbRegexType.getItems().clear();
+        cmbRegexType.getItems().addAll(
+                "posix",
+                "pcre"
+        );
+        cmbRegexType.getSelectionModel().select(0);
+    }
+    public void onBrowseCertificate(ActionEvent event){
+        Window window = ((Node) (event.getSource())).getScene().getWindow();
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(window);
+        event.consume();
+        if (file!=null){
+            txtCertificate.setText(file.getAbsolutePath());
+        }
+    }
+    public void onBrowsePrivateKey(ActionEvent event){
+        Window window = ((Node) (event.getSource())).getScene().getWindow();
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(window);
+        event.consume();
+        if (file!=null){
+            txtPrivateKey.setText(file.getAbsolutePath());
+        }
+    }
+    public void onBrowseCrlFile(ActionEvent event){
+        Window window = ((Node) (event.getSource())).getScene().getWindow();
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(window);
+        event.consume();
+        if (file!=null){
+            txtCrlFile.setText(file.getAbsolutePath());
+        }
+    }
+    public void onBrowseRandomFile(ActionEvent event){
+        Window window = ((Node) (event.getSource())).getScene().getWindow();
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(window);
+        event.consume();
+        if (file!=null){
+            txtRandomFile.setText(file.getAbsolutePath());
+        }
+    }
+    public void onBrowseWarcTempDir(ActionEvent event){
+        Window window = ((Node) (event.getSource())).getScene().getWindow();
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        File selectedDirectory = directoryChooser.showDialog(window);
+        event.consume();
+
+        if(selectedDirectory != null){
+            txtWarcTempDir.setText(selectedDirectory.getAbsolutePath());
+        }
+    }
+    public void onBrowseCaDirectory(ActionEvent event){
+        Window window = ((Node) (event.getSource())).getScene().getWindow();
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        File selectedDirectory = directoryChooser.showDialog(window);
+        event.consume();
+
+        if(selectedDirectory != null){
+            txtCaDirectory.setText(selectedDirectory.getAbsolutePath());
+        }
+    }
+    public void onBrowseWarcDedup(ActionEvent event){
+        Window window = ((Node) (event.getSource())).getScene().getWindow();
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(window);
+        event.consume();
+        if (file!=null){
+            txtWarcDedup.setText(file.getAbsolutePath());
+        }
+    }
+    public void onBrowseHstsFile(ActionEvent event){
+        Window window = ((Node) (event.getSource())).getScene().getWindow();
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(window);
+        event.consume();
+        if (file!=null){
+            txtHstsFile.setText(file.getAbsolutePath());
+        }
+    }
+    public void onBrowseWarcFile(ActionEvent event){
+        Window window = ((Node) (event.getSource())).getScene().getWindow();
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(window);
+        event.consume();
+        if (file!=null){
+            txtWarcFile.setText(file.getAbsolutePath());
+        }
+    }
+    public void onBrowseEgdFile(ActionEvent event){
+        Window window = ((Node) (event.getSource())).getScene().getWindow();
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(window);
+        event.consume();
+        if (file!=null){
+            txtEgdFile.setText(file.getAbsolutePath());
+        }
+    }
+    public void onBrowseCaCertificate(ActionEvent event){
+        Window window = ((Node) (event.getSource())).getScene().getWindow();
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(window);
+        event.consume();
+        if (file!=null){
+            txtCaCertificate.setText(file.getAbsolutePath());
+        }
+    }
 
     private String getCMD(){
         String command="";
@@ -704,6 +849,485 @@ public class AppControler {
         args="";
 
         //set args
+
+        //[-np] no-parent
+        if(chkNoParent.isSelected()==true){
+            args+=" -np";
+        }
+
+        //[-X] exclude directories
+        if(chkExcludeDirectories.isSelected()==true){
+            if(txtExcludeDirectories.getText().length()==0 || txtExcludeDirectories.getText()==""){
+                message="Exclude directories input is not valid!\nPlease enter a text value.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --exclude-directories="+"\""+txtExcludeDirectories.getText()+"\"";
+            }
+        }
+
+        //[-I] --include-directories
+        if(chkIncludeDirectories.isSelected()==true){
+            if(txtIncludeDirectories.getText().length()==0 || txtIncludeDirectories.getText()==""){
+                message="Include directories input is not valid!\nPlease enter a text value.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --include-directories="+"\""+txtIncludeDirectories.getText()+"\"";
+            }
+        }
+
+        //[-L] relative
+        if(chkRelative.isSelected()==true){
+            args+=" -L";
+        }
+
+        //[-H] span hosts
+        if(chkSpanHosts.isSelected()==true){
+            args+=" -H";
+        }
+
+        //--ignore-case
+        if(chkIgnoreCase.isSelected()==true){
+            args+=" --ignore-case";
+        }
+
+        //--ignore-tags
+        if(chkIgnoreTags.isSelected()==true){
+            if(txtIgnoreTags.getText().length()==0 || txtIgnoreTags.getText()==""){
+                message="Ignore tags input is not valid!\nPlease enter a text value.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --ignore-tags="+txtIgnoreTags.getText();
+            }
+        }
+
+        //--follow-tags
+        if(chkFollowTags.isSelected()==true){
+            if(txtFollowTags.getText().length()==0 || txtFollowTags.getText()==""){
+                message="Follow tags input is not valid!\nPlease enter a text value.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --follow-tags="+txtFollowTags.getText();
+            }
+        }
+
+        //--follow-ftp
+        if(chkFollowFtp.isSelected()==true){
+            args+=" --follow-ftp";
+        }
+
+        //--exclude-domains
+        if(chkExcludeDomains.isSelected()==true){
+            if(txtExcludeDomains.getText().length()==0 || txtExcludeDomains.getText()==""){
+                message="Exclude domains input is not valid!\nPlease enter a text value.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --exclude-domains="+txtExcludeDomains.getText();
+            }
+        }
+
+        //[-D] domains
+        if(chkDomains.isSelected()==true){
+            if(txtDomains.getText().length()==0 || txtRejectRegex.getText()==""){
+                message="Domains input is not valid!\nPlease enter a text value.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " -D "+txtDomains.getText();
+            }
+        }
+
+        //--regex-type
+        if(chkRegexType.isSelected()==true){
+            args +=" --regex-type " + cmbRegexType.getItems().get(cmbRegexType.getSelectionModel().getSelectedIndex());
+        }
+
+        //--reject-regex
+        if(chkRejectRegex.isSelected()==true){
+            if(txtRejectRegex.getText().length()==0 || txtRejectRegex.getText()==""){
+                message="Reject regex input is not valid!\nPlease enter a text value.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --reject-regex "+"\""+txtRejectRegex.getText()+"\"";
+            }
+        }
+
+        //--accept-regex
+        if(chkAcceptRegex.isSelected()==true){
+            if(txtAcceptRegex.getText().length()==0 || txtAcceptRegex.getText()==""){
+                message="Accept regex input is not valid!\nPlease enter a text value.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --accept-regex "+"\""+txtAcceptRegex.getText()+"\"";
+            }
+        }
+
+        //[-R] recursive reject list
+        if(chkRecursiveRejectList.isSelected()==true){
+            if(txtRecursiveRejectList.getText().length()==0 || txtRecursiveRejectList.getText()==""){
+                message="Recursive reject list input is not valid!\nPlease enter a text value.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " -R "+"\""+txtRecursiveRejectList.getText()+"\"";
+            }
+        }
+
+        //[-A] recursive accept list
+        if(chkRecursiveAcceptList.isSelected()==true){
+            if(txtRecursiveAcceptList.getText().length()==0 || txtRecursiveAcceptList.getText()==""){
+                message="Recursive accept list input is not valid!\nPlease enter a text value.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " -A "+"\""+txtRecursiveAcceptList.getText()+"\"";
+            }
+        }
+
+
+        //--strict-comments
+        if(chkStrictComments.isSelected()==true){
+            args+=" --strict-comments";
+        }
+
+        //[-p] page requisites
+        if(chkPageRequisites.isSelected()==true){
+            args+=" -p";
+        }
+
+        //[-m] mirror
+        if(chkMirror.isSelected()==true){
+            args+=" -m";
+        }
+
+        //[-K] backup converted
+        if(chkBackupConverted.isSelected()==true){
+            args+=" -K";
+        }
+
+        //--convert-file-only
+        if(chkConvertFileOnly.isSelected()==true){
+            args+=" --convert-file-only";
+        }
+
+        //[-k] convert links
+        if(chkConvertLinks.isSelected()==true){
+            args+=" -k";
+        }
+
+        //--delete-after
+        if(chkDeleteAfter.isSelected()==true){
+            args+=" --delete-after";
+        }
+
+        //-l level
+        if(chkLevel.isSelected()==true){
+            if(isNumericInt(txtLevel.getText())==false){
+                message="Level input is not numeric!\nPlease enter an integer number";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " -l "+txtLevel.getText();
+            }
+        }
+
+
+        //[-r] recursive
+        if(chkRecursive.isSelected()==true){
+            args+=" -r";
+        }
+
+        //--ftps-fallback-to-ftp
+        if(chkFtpsFallbackToFtp.isSelected()==true){
+            args+=" --ftps-fallback-to-ftp";
+        }
+
+        //--ftps-clear-data-connection
+        if(chkFtpsClearDataConnection.isSelected()==true){
+            args+=" --ftps-clear-data-connection";
+        }
+
+        //--no-ftps-resume-ssl
+        if(chkNoFtpsResumeSsl.isSelected()==true){
+            args+=" --no-ftps-resume-ssl";
+        }
+
+        //--ftps-implicit
+        if(chkFtpsImplicit.isSelected()==true){
+            args+=" --ftps-implicit";
+        }
+
+        //--retr-symlinks
+        if(chkRetrSymlinks.isSelected()==true){
+            args+=" --retr-symlinks";
+        }
+
+        //--preserve-permissions
+        if(chkPreservePermissions.isSelected()==true){
+            args+=" --preserve-permissions";
+        }
+
+        //--no-passive-ftp
+        if(chkNoPassiveFtp.isSelected()==true){
+            args+=" --no-passive-ftp";
+        }
+
+        //--no-glob
+        if(chkNoGlob.isSelected()==true){
+            args+=" --no-glob";
+        }
+
+        //--no-remove-listing
+        if(chkNoRemoveListing.isSelected()==true){
+            args+=" --no-remove-listing";
+        }
+
+        //--ftp-user
+        if(chkFtpUser.isSelected()==true){
+            if(txtFtpUser.getText().length()==0 || txtFtpUser.getText()==""){
+                message="Ftp user input is not valid!\nPlease enter a text value.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --ftp-user="+txtFtpUser.getText();
+            }
+        }
+
+        //--ftp-password
+        if(chkFtpPasswd.isSelected()==true){
+            if(txtFtpPasswd.getText().length()==0 || txtFtpPasswd.getText()==""){
+                message="Ftp user input is not valid!\nPlease enter a text value.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --ftp-password="+txtFtpPasswd.getText();
+            }
+        }
+
+
+        //--ca-directory
+        if(chkCaDirectory.isSelected()==true){
+            if(txtCaDirectory.getText().length()==0 || txtCaDirectory.getText()==""){
+                message="Ca directory input is not valid!\nPlease browse for a folder.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --ca-directory="+txtCaDirectory.getText();
+            }
+        }
+
+        //--egd-file
+        if(chkEgdFile.isSelected()==true){
+            if(txtEgdFile.getText().length()==0 || txtEgdFile.getText()==""){
+                message="Egd file input is not valid!\nPlease browse for a file.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --egd-file="+txtEgdFile.getText();
+            }
+        }
+
+
+        //--warc-max-size
+        if(chkWarcMaxSize.isSelected()==true){
+            if(isNumericInt(txtWarcMaxSize.getText())==false){
+                message="Warc max size input is not numeric!\nPlease enter an integer number";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --warc-max-size="+txtWarcMaxSize.getText();
+            }
+        }
+
+        //--warc-header
+        if(chkWarcHeader.isSelected()==true){
+            if(txtWarcHeader.getText().length()==0 || txtWarcHeader.getText()==""){
+                message="Warc header input is not valid!\nPlease enter a text value.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --warc-header=\""+txtWarcHeader.getText()+"\"";
+            }
+        }
+
+
+        //--warc-file
+        if(chkWarcFile.isSelected()==true){
+            if(txtWarcFile.getText().length()==0 || txtWarcFile.getText()==""){
+                message="Warc file input is not valid!\nPlease browse for a file.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --warc-file="+txtWarcFile.getText();
+            }
+        }
+
+
+        //--hsts-file
+        if(chkHstsFile.isSelected()==true){
+            if(txtHstsFile.getText().length()==0 || txtHstsFile.getText()==""){
+                message="Hsts file input is not valid!\nPlease browse for a file.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --hsts-file="+txtHstsFile.getText();
+            }
+        }
+
+
+        //--warc-dedup
+        if(chkWarcDedup.isSelected()==true){
+            if(txtWarcDedup.getText().length()==0 || txtWarcDedup.getText()==""){
+                message="Warc dedup file input is not valid!\nPlease browse for a file.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --warc-dedup="+txtWarcDedup.getText();
+            }
+        }
+
+
+        //--warc-tempdir
+        if(chkWarcTempDir.isSelected()==true){
+            if(txtWarcTempDir.getText().length()==0 || txtWarcTempDir.getText()==""){
+                message="Warc Temp Dit input is not valid!\nPlease browse for a folder.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --warc-tempdir="+txtWarcTempDir.getText();
+            }
+        }
+
+        //--crl-file
+        if(chkCrlFile.isSelected()==true){
+            if(txtCrlFile.getText().length()==0 || txtCrlFile.getText()==""){
+                message="Crl file input is not valid!\nPlease browse for a file.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --crl-file="+txtCrlFile.getText();
+            }
+        }
+
+        //--ca-certificate
+        if(chkCaCertificate.isSelected()==true){
+            if(txtCaCertificate.getText().length()==0 || txtCaCertificate.getText()==""){
+                message="Ca Certificate input is not valid!\nPlease browse for a file.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --ca-certificate="+txtCaCertificate.getText();
+            }
+        }
+
+        //--no-warc-keep-log
+        if(chkNoWarcKeepLog.isSelected()==true){
+            args+=" --no-warc-keep-log";
+        }
+
+        //--warc-cdx
+        if(chkWarcCdx.isSelected()==true){
+            args+=" --warc-cdx";
+        }
+
+        //--no-warc-digests
+        if(chkNoWarcDigests.isSelected()==true){
+            args+=" --no-warc-digests";
+        }
+
+        //--no-warc-compression
+        if(chkNoWarcCompression.isSelected()==true){
+            args+=" --no-warc-compression";
+        }
+
+        //--private-key-type
+        if(chkPrivateKeyType.isSelected()==true){
+            args +=" --private-key-type=" + cmbPrivateKeyType.getItems().get(cmbPrivateKeyType.getSelectionModel().getSelectedIndex());
+        }
+
+        //--private-key
+        if(chkPrivateKey.isSelected()==true){
+            if(txtPrivateKey.getText().length()==0 || txtPrivateKey.getText()==""){
+                message="Certificate input is not valid!\nPlease browse for a file.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --private-key="+txtPrivateKey.getText();
+            }
+        }
+
+        //--certificate-type
+        if(chkCertificateType.isSelected()==true){
+            args +=" --certificate-type=" + cmbCertificateType.getItems().get(cmbCertificateType.getSelectionModel().getSelectedIndex());
+        }
+
+        //--no-hsts
+        if(chkNoHsts.isSelected()==true){
+            args+=" --no-hsts";
+        }
+
+        //--certificate
+        if(chkCertificate.isSelected()==true){
+            if(txtCertificate.getText().length()==0 || txtCertificate.getText()==""){
+                message="Certificate input is not valid!\nPlease browse for a file.";
+                txtArea.setText(message);
+                command = "";
+                return command;
+            }else{
+                args += " --certificate="+txtCertificate.getText();
+            }
+        }
+
+
+        //--no-check-certificate
+        if(chkNoCheckCertificate.isSelected()==true){
+            args +=" --no-check-certificate";
+        }
+
+        //--ciphers
+        if(chkCiphers.isSelected()==true){
+            args +=" --ciphers";
+        }
+
+        //--https-only
+        if(chkHttpsOnly.isSelected()==true){
+            args +=" --https-only";
+        }
+
+        //--secure-protocol
+        if(chkSecureProtocol.isSelected()==true){
+            args +=" --secure-protocol=" + cmbSecureProtocol.getItems().get(cmbSecureProtocol.getSelectionModel().getSelectedIndex());
+        }
 
         //-compression
         if(chkCompression.isSelected()==true){
