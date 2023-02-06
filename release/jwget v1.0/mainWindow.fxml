@@ -123,7 +123,7 @@
                   </ImageView>
                </graphic>
                <tooltip>
-                  <Tooltip text="Stop All" />
+                  <Tooltip text="Refresh Job List" />
                </tooltip>
             </Button>
             <Button fx:id="btnDelete" layoutX="282.0" layoutY="14.0" mnemonicParsing="false" onAction="#onDelete">
