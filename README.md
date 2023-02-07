@@ -8,7 +8,7 @@ You have to download javaFX library and install it somewhere in your system.
 
 You can download the javaFX library from https://gluonhq.com/products/javafx/
 
-jwget was developed with javaFX 19.0.2.1
+jwget was developed with javaFX 19.0.2.1 and openjdk-jre 11. You can run the classes with default-jre 11 of ubuntu 22.04.01 or greater.
 
 1. Choose your operating system [Linux/Windows/macOS], then your architecture, and finaly choose SDK type.
 
